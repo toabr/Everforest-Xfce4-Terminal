@@ -1,0 +1,9 @@
+# https://github.com/sainnhe/everforest
+[Scheme]
+Name=Everforest-dark-hard
+ColorForeground=#D3C6AA
+ColorBackground=#272e33
+TabActivityColor=#E69875
+ColorSelectionUseDefault=FALSE
+ColorSelectionBackground=#4c3743
+ColorPalette=#1e2326;#E67E80;#A7C080;#DBBC7F;#7FBBB3;#D699B6;#83C092;#9DA9A0;#7A8478;#E67E80;#A7C080;#DBBC7F;#7FBBB3;#D699B6;#83C092;#D3C6AA

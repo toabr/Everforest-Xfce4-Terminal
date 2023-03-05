@@ -1,0 +1,9 @@
+# https://github.com/sainnhe/everforest
+[Scheme]
+Name=Everforest-light-soft
+ColorForeground=#5c6a72
+ColorBackground=#f3ead3
+TabActivityColor=#f57d26
+ColorSelectionUseDefault=FALSE
+ColorSelectionBackground=#e1e4bd
+ColorPalette=#e5dfc5;#f85552;#8da101;#dfa000;#3a94c5;#df69ba;#35a77c;#829181;#a6b0a0;#f85552;#8da101;#dfa000;#3a94c5;#df69ba;#35a77c;#5c6a72
