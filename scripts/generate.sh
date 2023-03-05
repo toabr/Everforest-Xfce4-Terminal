@@ -1,21 +1,31 @@
-#!/bin/sh
+#!/bin/bash
 
-# TODO:
-# - read different config files
-# - generate them all at once
+DIR="$(dirname "$0")"
+FileList=("$DIR"/*.conf)
+TargetFolder="$DIR"/../colorschemes
+OutPutFile=
+NAME=
 
-PALETTE_FILE=everforest.conf
+# reads config file and writes theme file
+# input: config file
+# output: theme file
+function buildTheme {
+CONFIGFILE="$1"
 
-if [ -f $PALETTE_FILE ]; then
-    . ./$PALETTE_FILE
-else
-    echo $PALETTE_FILE not found.
-    exit 1
+# shellcheck source=dark-medium.conf
+source "$CONFIGFILE"
+
+if [ ! -d "$TargetFolder" ]; then
+    mkdir "$TargetFolder"
 fi
 
-OUTPUT_FILE=./../${NAME}.theme
+NAME=$(basename -- "$CONFIGFILE")
+NAME="${NAME%.*}"
+OutPutFile=$TargetFolder/everforest-${NAME}.theme
 
-# xfce4-terminal color palette
+echo writing "${NAME}".theme in "$TargetFolder"
+
+# map everforest to terminal colors
 XBlack=$bg_dim
 XRed=$red
 XGreen=$green
@@ -34,9 +44,10 @@ XLightCyan=$aqua
 XLightWhite=$fg
 
 # write to file
-cat << EOF > $OUTPUT_FILE
+cat << EOF > "$OutPutFile"
+# https://github.com/sainnhe/everforest
 [Scheme]
-Name=$NAME
+Name=Everforest-$NAME
 ColorForeground=$fg
 ColorBackground=$bg0
 TabActivityColor=$orange
@@ -44,3 +55,9 @@ ColorSelectionUseDefault=FALSE
 ColorSelectionBackground=$bg_visual
 ColorPalette=$XBlack;$XRed;$XGreen;$XYellow;$XBlue;$XMagenta;$XCyan;$XLightGray;$XDarkGray;$XLightRed;$XLightGreen;$XLightYellow;$XLightBlue;$XLightMagenta;$XLightCyan;$XLightWhite
 EOF
+}
+
+# loop over all config files
+for i in "${FileList[@]}"; do buildTheme "$i"; done
+
+
